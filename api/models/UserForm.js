@@ -25,7 +25,7 @@ const UserFormSchema = new mongoose.Schema({
         type: "string",
         required: true
     },
-    phoneNumber: {
+    phone: {
         type: "string",
         required: true
     },
