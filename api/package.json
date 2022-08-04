@@ -1,0 +1,23 @@
+{
+  "name": "incubation_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sever.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon sever.js",
+    "run": "node sever.js"
+  },
+  "author": "abhijith v",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
+  }
+}
