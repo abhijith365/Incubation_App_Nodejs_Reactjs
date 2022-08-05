@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
         if (token) {
             let header = { headers: { "Authorization": `Bearer ${token}` } }
-            let { data } = await axios.get('http://127.0.0.1:8080/admin', header)
+            let { data } = await axios.get('http://127.0.0.1:8888/admin', header)
             if (data.data) {
                 setAdmin(data)
             } else {
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
         if (token) {
             let header = { headers: { "Authorization": `Bearer ${token}` } }
-            let { data } = await axios.get('http://127.0.0.1:8080/user', header)
+            let { data } = await axios.get('http://127.0.0.1:8888/api/auth/user', header)
             if (data.data) {
                 setUser(data)
             } else {

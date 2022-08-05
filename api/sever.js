@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { connect } from './config/db.js';
 import UserRoute from './routes/UserRoute.js'
 import AuthRouter from './routes/AuthRouter.js'
+import AdminRouter from './routes/AdminRoute.js'
 import cookieParser from "cookie-parser"
 
 const app = express()
@@ -23,6 +24,7 @@ connect()
 // routes
 app.use('/api/user', UserRoute)
 app.use('/api/auth', AuthRouter)
+app.use('/admin', AdminRouter)
 
 
 //ROUTER ERROR HANDLER MIDDLEWARE

@@ -44,16 +44,13 @@ export default function SignIn() {
         e.preventDefault();
         setFormError(() => validate(user))
 
-        if (Object.keys(formError).length === 0) {
+        if (Object.keys(formError).length === 0 && isSubmit) {
 
-            const { data } = await axios.post('http://127.0.0.1:8080/login', user)
+            const { data } = await axios.post('http://127.0.0.1:8888/api/auth/user', user)
 
-            if (data.status === 201 && !data.data[0].status) {
-                setFormError({ "error": "User was Blocked" })
-            } else if (data.status === 201) {
-                console.log(data)
-                auth.login(data)
-                navigate('/', { replace: true })
+            if (data.status == 201) {
+                auth.checkUser(data.data)
+                navigate('/home', { replace: true })
             }
             else {
                 setFormError({ "error": data.message })

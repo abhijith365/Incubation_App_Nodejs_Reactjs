@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken')
-const asyncHandler = require('express-async-handler')
+import jwt from 'jsonwebtoken'
+import asyncHandler from 'express-async-handler'
 
 
-const Adminprotect = asyncHandler(async (req, res, next) => {
+export const Adminprotect = asyncHandler(async (req, res, next) => {
     let token
     //chcking is token is bearer token and containg Bearer 
     let BearerToken = req.headers.authorization.split(' ')[0] === 'Bearer';
@@ -31,6 +31,3 @@ const Adminprotect = asyncHandler(async (req, res, next) => {
 
 })
 
-module.exports = {
-    Adminprotect
-}

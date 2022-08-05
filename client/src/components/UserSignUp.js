@@ -45,12 +45,13 @@ export default function SignUp() {
 
 
 
-        if (Object.keys(formError).length === 0) {
+        if (Object.keys(formError).length === 0 && isSubmit) {
 
-            const userData = await axios.post('http://127.0.0.1:8080/reg', user)
+            const userData = await axios.post('http://127.0.0.1:8888/api/auth', user)
+            console.log(userData)
             const data = userData.data
 
-            if (data.status === 201) {
+            if (data.status === 200) {
                 auth.signUp(data)
                 navigate('/', { replace: false })
             }

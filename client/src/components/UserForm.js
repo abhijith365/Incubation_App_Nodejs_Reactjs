@@ -5,6 +5,7 @@ import { Button, Container, FormControl, FormControlLabel, FormLabel, Radio, Rad
 import { Fragment, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import Formvalidate from '../utils/UserFormValidator';
+import axios from 'axios'
 
 export default function UserForm() {
 
@@ -24,12 +25,25 @@ export default function UserForm() {
 
 
     //for submiting form
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         setOnSubmit(true)
         e.preventDefault();
         setError(() => Formvalidate(formData))
-        if (Object.keys(error).length === 0) {
-            console.log("submit")
+        if (Object.keys(error).length === 0 && onSubmit) {
+
+            let token = localStorage.getItem('userConfig')
+
+            let header = { headers: { "Authorization": `Bearer ${token}` } }
+            const data = await axios.post('http://127.0.0.1:8888/api/user/formSubmit', formData, header)
+
+            console.log(data)
+            // if (data.status === 201) {
+            //     auth.checkUser(data.data)
+            //     navigate('/home', { replace: true })
+            // }
+            // else {
+            //     setFormError({ "error": data.message })
+            // }
         }
     }
     //changing form values 

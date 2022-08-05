@@ -1,9 +1,10 @@
-const jwt = require('jsonwebtoken')
-const asyncHandler = require('express-async-handler')
-const User = require('../models/userModel')
+import jwt from 'jsonwebtoken'
+import asyncHandler from 'express-async-handler'
+import User from '../models/User.js'
 
 
-const protect = asyncHandler(async (req, res, next) => {
+
+export const protect = asyncHandler(async (req, res, next) => {
     let token
     //chcking is token is bearer token and containg Bearer 
     let BearerToken = req.headers.authorization.split(' ')[0] === 'Bearer';
@@ -17,6 +18,7 @@ const protect = asyncHandler(async (req, res, next) => {
             const encode = jwt.verify(token, process.env.JWT_SECRET)
 
             //assigning to the user object
+            console.log(encode)
             req.user = await User.findById(encode.id).select('-password')
 
             next()
@@ -32,6 +34,3 @@ const protect = asyncHandler(async (req, res, next) => {
 
 })
 
-module.exports = {
-    protect
-}
