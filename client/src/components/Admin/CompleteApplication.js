@@ -8,14 +8,14 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 
 
-export default function PendingList({ data }) {
+export default function CompleteApplication({ data }) {
 
-    const viewedData = data.data?.filter((item) => { return (item.adminView) })
+    const viewedData = data.data?.filter((item) => { return (!item.adminView && (item.approved || item.reject)) })
 
     return (
         <>
 
-            <h1>PENDING LIST</h1>
+            <h1>COMPLETED APPLICATION LIST</h1>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead>
@@ -23,8 +23,8 @@ export default function PendingList({ data }) {
                             <TableCell>Company Name</TableCell>
                             <TableCell align="right">Name</TableCell>
                             <TableCell align="right">View</TableCell>
-                            <TableCell align="right">Decline</TableCell>
-                            <TableCell align="right">Approve</TableCell>
+                            <TableCell align="right">Status</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -38,9 +38,10 @@ export default function PendingList({ data }) {
                                 </TableCell>
                                 <TableCell align="right">{item.name}</TableCell>
                                 <TableCell align="right">{<Button variant="outlined" onClick={() => data.viewHandleClick(item._id)}>View</Button>}</TableCell>
-                                <TableCell align="right">{<Button color='error' onClick={() => data.viewHandleClick(item._id, 'reject')} variant="outlined">Decline</Button>}</TableCell>
+                                <TableCell align="right">{<Button color={(item.reject) ? 'error' : (item.approved) ? 'success' : ''} variant="contained">
+                                    {(item.reject) ? 'Application Rejected' : (item.approved) ? 'Application Approved' : ''}</Button>}</TableCell>
 
-                                <TableCell align="right">{<Button color='success' onClick={() => data.viewHandleClick(item._id, 'approved')} variant="outlined">Accept</Button>}</TableCell>
+
 
                             </TableRow>
 

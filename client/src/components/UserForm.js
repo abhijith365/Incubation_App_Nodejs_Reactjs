@@ -37,13 +37,6 @@ export default function UserForm() {
             const data = await axios.post('http://127.0.0.1:8888/api/user/formSubmit', formData, header)
 
             console.log(data)
-            // if (data.status === 201) {
-            //     auth.checkUser(data.data)
-            //     navigate('/home', { replace: true })
-            // }
-            // else {
-            //     setFormError({ "error": data.message })
-            // }
         }
     }
     //changing form values 

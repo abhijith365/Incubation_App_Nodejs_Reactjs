@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
         min: 4,
         max: 10,
         required: true
+    },
+    formStatus: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 

@@ -46,11 +46,11 @@ export default function SignIn() {
 
         if (Object.keys(formError).length === 0 && isSubmit) {
 
-            const { data } = await axios.post('http://127.0.0.1:8888/api/auth/user', user)
+            const { data } = await axios.post('http://127.0.0.1:8888/api/user/user', user)
 
             if (data.status == 201) {
                 auth.checkUser(data.data)
-                navigate('/home', { replace: true })
+                navigate('/', { replace: true })
             }
             else {
                 setFormError({ "error": data.message })

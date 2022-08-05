@@ -1,4 +1,5 @@
 import User from "../../models/User.js"
+import UserForm from '../../models/UserForm.js'
 import bcrypt from 'bcrypt'
 import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken'
@@ -95,8 +96,17 @@ export const userData = asyncHandler(async (req, res) => {
 })
 
 export const formSubmit = asyncHandler(async (req, res, next) => {
-    console.log(req.body)
-    res.send("hh")
+    try {
+        const data = { ...req.body, userId: req.user.id }
+        const newForm = new UserForm(data)
+        const updateUser = await User.findByIdAndUpdate(req.user.id, { $set: { formStatus: true } }, { new: true })
+        await newForm.save()
+        console.log(newForm, updateUser)
+        res.status(200).json({ message: "Success", data: true })
+
+    } catch (error) {
+        next(error)
+    }
 })
 
 //generate JWT

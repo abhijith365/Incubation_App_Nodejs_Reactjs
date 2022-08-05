@@ -1,3 +1,4 @@
+import Home from "./Home"
 import { useEffect, useState } from "react"
 import { AuthUser } from "./AuthRouter"
 import UserForm from "./UserForm"
@@ -16,5 +17,9 @@ export default function RequireAuth({ children }) {
     if (loading && !auth.user) {
         return <SignIn />
     }
-    return <UserForm />
+    if (loading && auth.user.data.formStatus) {
+        return <Home />
+    } else {
+        return <UserForm />
+    }
 }

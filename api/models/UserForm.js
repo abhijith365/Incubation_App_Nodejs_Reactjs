@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const UserFormSchema = new mongoose.Schema({
     userId: {
         type: "string",
-        required: true
+        required: true,
+        unique: true
     },
     name: {
         type: "string",
@@ -81,6 +82,18 @@ const UserFormSchema = new mongoose.Schema({
         type: "string",
         required: true
     },
+    adminView: {
+        type: Boolean,
+        default: false
+    },
+    approved: {
+        type: Boolean,
+        default: false
+    },
+    reject: {
+        type: Boolean,
+        default: false
+    }
 
 }, { timestamps: true })
 
