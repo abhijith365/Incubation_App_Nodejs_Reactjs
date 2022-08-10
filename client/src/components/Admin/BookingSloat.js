@@ -47,38 +47,83 @@ export default function BookingSloat() {
         insideTopBox: {
 
             width: '10rem',
-            height: '6.3rem',
+            height: '5.5rem',
             margin: "8px 10px",
             backgroundColor: 'blue'
         },
+        insideBottomBox: {
+            width: '5.3rem',
+            height: '5.5rem',
+            margin: "12px 10px",
+            backgroundColor: 'blue'
+        },
+        insideActiveBox: {
+            width: '5.3rem',
+            height: '5.5rem',
+            margin: "12px 10px",
+            backgroundColor: "yellow"
+        },
         hr: {
             width: '100%',
-            margin: '2rem auto',
+            margin: '1rem auto',
             height: '2px',
             backgroundColor: 'black',
         },
+        vHr: {
+            position: 'absolute',
+            width: '2px',
+            margin: '1rem auto',
+            height: '50vh',
+            backgroundColor: 'black',
+        }
+        ,
         bottomBox: {
             display: 'flex',
             'justifyContent': 'center',
             alignItems: 'center',
-            marginTop: '2rem'
+            marginTop: '1rem'
         },
         activeBox: {
             width: '10rem',
             height: '6.3rem',
             margin: "8px 10px",
             backgroundColor: "yellow"
+        },
+        gridContainer: {
+            display: 'grid',
+            gridTemplateColumns: 'auto auto auto  auto auto  auto auto auto auto auto',
         }
+
     }
 
+    /* <>
+                        {(i === 9) ?
+                            <>
+                                <div key={`${i + "topBox"}`} style={(activeCol.includes(i + 1)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 1) }} className={"topbox"}>
+                                    <div style={style.topBox}>{i + 1}</div>
+                                </div>
+                                <div style={style.hr} />
+                                <div style={style.hr} />
 
+                            </>
+                            :
+                            <div key={`${i + "topBox"}`} style={(activeCol.includes(i + 1)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 1) }} className={"topbox"}>
+                                <div style={style.topBox}>{i + 1}</div>
+                            </div>
+
+                        }
+
+
+                    </> */
 
 
     return (
         <>
+            {/* Top boxes */}
+
             <div className="topRow" style={style.topBox}>
                 {Array(10).fill(null).map((item, i) => (
-                    <div key={`${i + "topBox"}`} style={(activeCol.includes(i + 1)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 1) }} className={"topbox"}>
+                    <div key={`${i + 11 + "topBox"}`} style={(activeCol.includes(i + 11)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 11) }} className={"topbox"}>
                         <div style={style.topBox}>{i + 1}</div>
                     </div>
                 ))}
@@ -86,20 +131,21 @@ export default function BookingSloat() {
             <div style={style.hr} />
             <div style={style.hr} />
 
-            <div className="topRow" style={style.bottomBox}>
-                {Array(10).fill(null).map((item, i) => (
-                    <div key={`${i + 11 + "topBox"}`} style={(activeCol.includes(i + 11)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 11) }} className={"topbox"}>
-                        <div style={style.topBox}>{i + 11}</div>
-                    </div>
+
+            {/* Bottom box */}
+
+            <div className="topRow" style={style.gridContainer}>
+                {Array(30).fill(null).map((item, i) => (
+                    <>
+                        <div key={`${i + 12 + "topBox"}`} style={(activeCol.includes(i + 21)) ? style.insideActiveBox : style.insideBottomBox} onClick={() => { onHandleClick(i + 21) }} className={"topbox"}>
+                            <div style={style.topBox}>{i + 21}</div>
+                        </div>
+
+                    </>
+
                 ))}
             </div>
-            <div className="topRow" style={style.bottomBox}>
-                {Array(10).fill(null).map((item, i) => (
-                    <div key={`${i + 12 + "topBox"}`} style={(activeCol.includes(i + 21)) ? style.activeBox : style.insideTopBox} onClick={() => { onHandleClick(i + 21) }} className={"topbox"}>
-                        <div style={style.topBox}>{i + 21}</div>
-                    </div>
-                ))}
-            </div>
+
             <Dialog
                 open={open}
                 keepMounted
